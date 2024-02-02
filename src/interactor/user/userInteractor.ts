@@ -1,10 +1,15 @@
+import { inject, injectable } from "inversify";
 import { User } from "../../entity/User";
 import { IUserRepository } from "../../repository/user/IUserRepository";
 import { IUserInteractor } from "./IUserInteractor";
+import { INTERFACE_TYPE } from "../../utils";
 
+@injectable()
 export class UserInteractor implements IUserInteractor {
   repository: IUserRepository;
-  constructor(repository: IUserRepository) {
+  constructor(
+    @inject(INTERFACE_TYPE.UserRepository) repository: IUserRepository
+  ) {
     this.repository = repository;
   }
 

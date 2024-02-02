@@ -1,10 +1,14 @@
 import { NextFunction, Response, Request } from "express";
 import { IUserInteractor } from "../interactor/user/IUserInteractor";
 import { User } from "./../entity/User";
-
+import { inject, injectable } from "inversify";
+import { INTERFACE_TYPE } from "../utils";
+@injectable()
 export class UserController {
   private interactor: IUserInteractor;
-  constructor(interactor: IUserInteractor) {
+  constructor(
+    @inject(INTERFACE_TYPE.UserInteractor) interactor: IUserInteractor
+  ) {
     this.interactor = interactor;
   }
 

@@ -1,7 +1,8 @@
 import mongoose, { Schema } from "mongoose";
 import { IUserRepository } from "./IUserRepository";
 import { User } from "../../entity/User";
-
+import { injectable } from "inversify";
+@injectable()
 export class MongoUserRepository implements IUserRepository {
   schema = Schema<User>;
   model: mongoose.Model<User>;
